@@ -4,11 +4,16 @@ from django.shortcuts import render, get_object_or_404
 from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 # Create your views here.
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    paginator = Paginator(posts, 3)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 
