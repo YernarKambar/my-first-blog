@@ -11,7 +11,7 @@ class Post(models.Model):
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
-    image = models.ImageField(upload_to='post_image')
+    image = models.ImageField(upload_to='post_image', blank=True)
 
     def publish(self):
         self.published_date = timezone.now()

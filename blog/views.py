@@ -13,7 +13,6 @@ def post_list(request):
     paginator = Paginator(posts, 3)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 
@@ -25,7 +24,7 @@ def post_detail(request, pk):
 @login_required
 def post_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
