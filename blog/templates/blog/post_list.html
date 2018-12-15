@@ -5,7 +5,7 @@
     <div class="paginator">
         {% if posts.has_previous %}
             <a href="?page=1"><<< </a>
-            <a href="?page={{ posts.previous_page_number }}"><</a>
+            <a href="?page={{ posts.previous_page_number }}"> <</a>
         {% endif %}
 
         {% for num in posts.paginator.page_range %}
@@ -16,7 +16,7 @@
             {% endif %}
         {% endfor %}
         {% if posts.has_next %}
-            <a href="?page={{ posts.next_page_number }}">></a>
+            <a href="?page={{ posts.next_page_number }}">> </a>
             <a href="?page={{ posts.paginator.num_pages }}"> >>></a>
         {% endif %}
     </div>
